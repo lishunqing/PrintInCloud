@@ -6,6 +6,9 @@
 #include "PrintInCloud.h"
 #include "PrintInCloudDlg.h"
 #include "afxdialogex.h"
+#include <iostream>  
+#include "server.h" 
+#include "print.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -30,6 +33,7 @@ void CPrintInCloudDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CPrintInCloudDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDOK, &CPrintInCloudDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -45,6 +49,8 @@ BOOL CPrintInCloudDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
+	CON = (CStatic*)GetDlgItem(IDC_CONNECTION);
+	PIC = GetDlgItem(IDC_PICTURE);
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -85,3 +91,24 @@ HCURSOR CPrintInCloudDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CPrintInCloudDlg::OnBnClickedOk()
+{
+	CRect rect;
+	PIC->GetWindowRect(&rect);
+	ScreenToClient(rect);
+
+	HDC hdcScreen = ::GetDC(NULL);
+	CDC *dc = GetDC();
+
+
+	DWORD e = 0;
+
+	CString ret = getTaks(NULL,e);
+	print::drawQRCode(dc, rect, ret);
+
+	CON->SetWindowText(L"连接成功");
+
+	MessageBox(ret);
+}

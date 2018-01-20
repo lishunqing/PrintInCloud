@@ -33,6 +33,45 @@
     <ClInclude Include="Resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="server.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\bitstream.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\mask.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\mmask.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\mqrspec.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\qrencode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\qrencode_inner.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\qrinput.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\qrspec.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\rscode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\split.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="print.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PrintInCloud.cpp">
@@ -42,6 +81,39 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="server.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\bitstream.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\mask.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\mmask.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\mqrspec.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\qrencode.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\qrinput.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\qrspec.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\rscode.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\split.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="print.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
