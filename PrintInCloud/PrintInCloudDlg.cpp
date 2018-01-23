@@ -7,7 +7,8 @@
 #include "PrintInCloudDlg.h"
 #include "afxdialogex.h"
 #include <iostream>  
-#include "server.h" 
+#include "server.h"
+#include "json/json.h"
 #include "print.h"
 
 #ifdef _DEBUG
@@ -33,7 +34,8 @@ void CPrintInCloudDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CPrintInCloudDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDOK, &CPrintInCloudDlg::OnBnClickedOk)
+	ON_WM_TIMER()
+//	ON_BN_CLICKED(IDOK, &CPrintInCloudDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -51,6 +53,9 @@ BOOL CPrintInCloudDlg::OnInitDialog()
 	// TODO: 在此添加额外的初始化代码
 	CON = (CStatic*)GetDlgItem(IDC_CONNECTION);
 	PIC = GetDlgItem(IDC_PICTURE);
+
+	SetTimer(1, 0, NULL);//5秒刷新一次
+	//_CrtSetBreakAlloc(521);
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -91,24 +96,60 @@ HCURSOR CPrintInCloudDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-
-
-void CPrintInCloudDlg::OnBnClickedOk()
+void CPrintInCloudDlg::OnTimer(UINT_PTR x)
 {
-	CRect rect;
-	PIC->GetWindowRect(&rect);
-	ScreenToClient(rect);
+	KillTimer(1);
 
-	HDC hdcScreen = ::GetDC(NULL);
-	CDC *dc = GetDC();
-
+	//获取注册表中的ID
+	const LPCTSTR lpConfig = L"Software\\Store\\Config";
+	HKEY hKey;
+	TCHAR buff[1024] = { 0 };
+	long lRet = RegOpenKeyEx(HKEY_CURRENT_USER, lpConfig, NULL, KEY_QUERY_VALUE, &hKey);
+	if (lRet == ERROR_SUCCESS) {
+		DWORD l = sizeof(buff);
+		lRet = RegQueryValueEx(hKey, L"id", NULL, NULL,(BYTE*) buff, &l);
+	}
+	//	return false;
+	//
+	RegCloseKey(hKey);
 
 	DWORD e = 0;
+	CString ret = getTaks(buff,e);
+	SetTimer(1, 5000, NULL);//5秒刷新一次
 
-	CString ret = getTaks(NULL,e);
-	print::drawQRCode(dc, rect, ret);
+	Json::Value root;
+	Json::Reader reader;
 
-	CON->SetWindowText(L"连接成功");
+	if (e) {
+		CString m;
+		m.Format(L"连接服务器失败。错误码：%d",e);
+		CON->SetWindowText(m);
+		return;
+	}
+	std::string json = CT2CA(ret.GetBuffer());
+	reader.parse(json, root, false);
 
-	MessageBox(ret);
+	auto id = root["id"];
+	if (id.isString()) {
+		const char* ID = id.asCString();
+		CString m;
+		m.Format(L"连接服务器成功。设备编号：%s", CA2CT(ID));
+		CON->SetWindowText(m);
+
+		CRect rect;
+		PIC->GetWindowRect(&rect);
+		ScreenToClient(rect);
+		CDC *dc = GetDC();
+		print::drawQRCode(dc, rect, ID);
+
+		HKEY hKey;
+		long lRet = RegCreateKey(HKEY_CURRENT_USER, lpConfig, &hKey);
+		if (lRet == ERROR_SUCCESS) {
+			lRet = RegSetValueExA(hKey, "id", 0, REG_SZ, (const BYTE*)ID,strlen(ID));
+		}
+		RegCloseKey(hKey);
+	}
+	auto name = root["name"];
+
+
 }

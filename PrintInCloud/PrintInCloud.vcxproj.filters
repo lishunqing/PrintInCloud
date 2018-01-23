@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\Json">
+      <UniqueIdentifier>{3a82ebd6-f320-48ad-8d66-9c1a69c48f3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\QREncode">
+      <UniqueIdentifier>{25f605cc-cb15-457f-9e0f-302dba984e74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Json">
+      <UniqueIdentifier>{6bdc8111-ba68-43d1-aef1-76dc8545ff00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\QREncode">
+      <UniqueIdentifier>{bd1fa6df-fb18-47bf-a838-7feec4ad489f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -36,41 +48,68 @@
     <ClInclude Include="server.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="QREncode\bitstream.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="QREncode\config.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="QREncode\mask.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="QREncode\mmask.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="QREncode\mqrspec.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="QREncode\qrencode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="QREncode\qrencode_inner.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="QREncode\qrinput.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="QREncode\qrspec.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="QREncode\rscode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="QREncode\split.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="print.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\bitstream.h">
+      <Filter>头文件\QREncode</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\config.h">
+      <Filter>头文件\QREncode</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\mask.h">
+      <Filter>头文件\QREncode</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\mmask.h">
+      <Filter>头文件\QREncode</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\mqrspec.h">
+      <Filter>头文件\QREncode</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\qrencode.h">
+      <Filter>头文件\QREncode</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\qrencode_inner.h">
+      <Filter>头文件\QREncode</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\qrinput.h">
+      <Filter>头文件\QREncode</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\qrspec.h">
+      <Filter>头文件\QREncode</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\rscode.h">
+      <Filter>头文件\QREncode</Filter>
+    </ClInclude>
+    <ClInclude Include="QREncode\split.h">
+      <Filter>头文件\QREncode</Filter>
+    </ClInclude>
+    <ClInclude Include="json\autolink.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\config.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\features.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\forwards.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\json.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\json_batchallocator.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\reader.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\value.h">
+      <Filter>头文件\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\writer.h">
+      <Filter>头文件\Json</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -86,35 +125,44 @@
     <ClCompile Include="server.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="QREncode\bitstream.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="QREncode\mask.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="QREncode\mmask.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="QREncode\mqrspec.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="QREncode\qrencode.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="QREncode\qrinput.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="QREncode\qrspec.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="QREncode\rscode.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="QREncode\split.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="print.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\bitstream.c">
+      <Filter>源文件\QREncode</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\mask.c">
+      <Filter>源文件\QREncode</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\mmask.c">
+      <Filter>源文件\QREncode</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\mqrspec.c">
+      <Filter>源文件\QREncode</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\qrencode.c">
+      <Filter>源文件\QREncode</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\qrinput.c">
+      <Filter>源文件\QREncode</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\qrspec.c">
+      <Filter>源文件\QREncode</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\rscode.c">
+      <Filter>源文件\QREncode</Filter>
+    </ClCompile>
+    <ClCompile Include="QREncode\split.c">
+      <Filter>源文件\QREncode</Filter>
+    </ClCompile>
+    <ClCompile Include="json\json_reader.cpp">
+      <Filter>源文件\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="json\json_value.cpp">
+      <Filter>源文件\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="json\json_writer.cpp">
+      <Filter>源文件\Json</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

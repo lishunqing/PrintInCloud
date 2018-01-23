@@ -7,5 +7,5 @@ public:
 	float ratoy;//每千分之一毫米的像素数
 	//void setDPI(int, int);
 
-	static void drawQRCode(CDC*, CRect&, CString);
+	static void drawQRCode(CDC*, CRect&, const char*);
 };

@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "server.h"
 
-//LPCTSTR Host = L"528539490.lcloudl.xyz";
-LPCTSTR Host = L"rsd44zk7.qcloud.la";
+
+LPCTSTR Host = L"528539490.lcloudl.xyz";
+//LPCTSTR Host = L"rsd44zk7.qcloud.la";
 LPCTSTR Path = L"/weapp/print/task";
 
-CString getTaks(CString args, DWORD&err) {
+CString getTaks(TCHAR* args, DWORD&err) {
 	DWORD dwSize = 0;
 	DWORD dwDownloaded = 0;
 	LPSTR pszOutBuffer;
@@ -30,15 +31,15 @@ CString getTaks(CString args, DWORD&err) {
 
 	// Create an HTTP request handle.
 	if (hConnect)
-		if (args) {
-			hRequest = WinHttpOpenRequest(hConnect, L"GET", Path,
+		if (*args) {
+			CString path;
+			path.Format(L"%s?id=%s", Path, args);
+			hRequest = WinHttpOpenRequest(hConnect, L"GET", path.GetBuffer(),
 				NULL, WINHTTP_NO_REFERER,
 				WINHTTP_DEFAULT_ACCEPT_TYPES,
 				WINHTTP_FLAG_SECURE);
 		}else{
-			CString path;
-			path.Format(L"%s?%s", Path, args.GetBuffer());
-			hRequest = WinHttpOpenRequest(hConnect, L"GET", path.GetBuffer(),
+			hRequest = WinHttpOpenRequest(hConnect, L"GET", Path,
 				NULL, WINHTTP_NO_REFERER,
 				WINHTTP_DEFAULT_ACCEPT_TYPES,
 				WINHTTP_FLAG_SECURE);

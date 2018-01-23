@@ -2,15 +2,11 @@
 #include "print.h"
 #include "QREncode/qrencode.h"
 
-void print::drawQRCode(CDC *dc, CRect & rect, CString text)
+void print::drawQRCode(CDC *dc, CRect & rect, const char* text)
 {
 	FillRect(dc->GetSafeHdc(), rect, CreateSolidBrush(RGB(255, 255, 255)));
-	//UniCode×Ö·û×ªÎªAnsi
-	int ansiLen = WideCharToMultiByte(CP_UTF8, 0, text.GetBuffer(), -1, NULL, 0, NULL, NULL) + 1;
-	char* pAnsi = new char[ansiLen];
-	WideCharToMultiByte(CP_UTF8, 0, text.GetBuffer(), -1, pAnsi, ansiLen, NULL, NULL);
-	QRcode* pQRC = QRcode_encodeString(pAnsi, 0, QR_ECLEVEL_H, QR_MODE_8, 1);
-	delete pAnsi;
+
+	QRcode* pQRC = QRcode_encodeString(text, 0, QR_ECLEVEL_H, QR_MODE_8, 1);
 
 	if (pQRC == NULL)
 		return;
