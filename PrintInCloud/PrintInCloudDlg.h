@@ -42,8 +42,9 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	void OnTimer(UINT_PTR);
 	void loadList();
-	int printList(Json::Value,int,CDC *,int,int,int,int);
 
+
+	void setAuto();
 
 	DECLARE_MESSAGE_MAP()
 public:

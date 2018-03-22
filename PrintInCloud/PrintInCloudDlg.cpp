@@ -67,7 +67,6 @@ BOOL CPrintInCloudDlg::OnInitDialog()
 
 	((CButton*)GetDlgItem(IDC_AUTO))->SetCheck(1);
 
-
 	srand((unsigned)time(NULL));
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
@@ -355,17 +354,17 @@ void CPrintInCloudDlg::OnBnClickedPrintList()
 	di.fwType = 0;
 
 	dc.StartDoc(&di);
-	dc.StartPage();
 
 	//todo,多页
 	int start = 0;
 	do
 	{
+		dc.StartPage();
 		start = print::printList(task, start, &dc, 0, 0, xsize, ysize);
+		dc.EndPage();
 	} while (start >= 0);
 	
 
-	dc.EndPage();
 	dc.EndDoc();
 	dc.DeleteDC();
 

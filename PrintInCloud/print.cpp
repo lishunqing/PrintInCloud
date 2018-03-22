@@ -4,11 +4,15 @@
 
 static unsigned int ra = 0;
 static const char* wxurl = "https://u.wechat.com/EB-CztQG0xos67txvVXsiNY";
+static HBRUSH white = CreateSolidBrush(RGB(255, 255, 255));
+static HBRUSH black = CreateSolidBrush(RGB(0, 0, 0));
 
 
 void print::drawQRCode(CDC *dc, CRect & rect, const char* text)
 {
-	FillRect(dc->GetSafeHdc(), rect, CreateSolidBrush(RGB(255, 255, 255)));
+
+	HDC hdc = dc->GetSafeHdc();
+	FillRect(hdc, rect, white);
 
 	QRcode* pQRC = QRcode_encodeString(text, 0, QR_ECLEVEL_H, QR_MODE_8, 1);
 
@@ -31,7 +35,7 @@ void print::drawQRCode(CDC *dc, CRect & rect, const char* text)
 					int(top + hstep * y + 0.5), 
 					int(left + wstep * x + wstep + 0.5),
 					int(top + hstep * y + hstep + 0.5));
-				FillRect(dc->GetSafeHdc(), f, CreateSolidBrush(RGB(0, 0, 0)));
+				FillRect(hdc, f, black);
 			}
 
 			++data;
@@ -326,7 +330,7 @@ void print::printTag(Json::Value task, int id, CDC *dc, int left, int top, int w
 	yy += int(fonts + percent);;
 
 	dc->SelectObject(&fs);
-	text.Format("安全技术类别：%s",  m["style2"].asCString());
+	text.Format("安全技术类别：%s",  m["style3"].asCString());
 	ExtTextOutA(dc->GetSafeHdc(), int(left + edge), yy, 0, NULL, text.GetBuffer(), text.GetLength(), NULL);
 
 	yy += int(fonts + percent);;

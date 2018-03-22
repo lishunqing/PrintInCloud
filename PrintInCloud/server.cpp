@@ -62,6 +62,10 @@ CString getTaks(TCHAR* args, DWORD&err) {
 
 	// Keep checking for data until there is nothing left.
 	if (bResults)
+	{
+		DWORD dwReadBytes, dwSizeDW = sizeof(dwSizeDW), dwContentSize, dwIndex = 0;
+
+		WinHttpQueryHeaders(hRequest, WINHTTP_QUERY_CONTENT_LENGTH | WINHTTP_QUERY_FLAG_NUMBER, NULL, &dwContentSize, &dwSizeDW, &dwIndex);
 		do
 		{
 			// Check for available data.
@@ -98,19 +102,20 @@ CString getTaks(TCHAR* args, DWORD&err) {
 			}
 
 		} while (dwSize > 0);
+	}
 
 
 
-		// Report any errors.
-		if (!bResults)
-			err = GetLastError();
-		else
-			err = 0;
+	// Report any errors.
+	if (!bResults)
+		err = GetLastError();
+	else
+		err = 0;
 
-		// Close any open handles.
-		if (hRequest) WinHttpCloseHandle(hRequest);
-		if (hConnect) WinHttpCloseHandle(hConnect);
-		if (hSession) WinHttpCloseHandle(hSession);
+	// Close any open handles.
+	if (hRequest) WinHttpCloseHandle(hRequest);
+	if (hConnect) WinHttpCloseHandle(hConnect);
+	if (hSession) WinHttpCloseHandle(hSession);
 
-		return ret;
+	return ret;
 }
