@@ -13,7 +13,7 @@
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
-[Rr]elease/
+[Rr]eleases/
 [Xx]64/
 [Xx]86/
 [Bb]uild/
@@ -53,6 +53,7 @@ artifacts/
 *.pch
 *.pdb
 *.ipdb
+*.tlog
 *.pgc
 *.pgd
 *.rsp

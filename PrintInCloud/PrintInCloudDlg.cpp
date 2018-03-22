@@ -512,7 +512,7 @@ void CPrintInCloudDlg::OnBnClickedList(NMHDR *pNMHDR, LRESULT *pResult)
 	print::printTag(task, i, dc, rect.left, rect.top, rect.Width(), rect.Height());
 	ReleaseDC(dc);
 
-}
+} 
 
 
 
